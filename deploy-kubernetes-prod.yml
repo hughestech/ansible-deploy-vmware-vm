@@ -29,6 +29,4 @@
       vars:
         state: "poweredon"
 
-    - name: Debug print from the play
-      debug:  
-        msg: guest_custom_ip={{ inventory_hostname | default("Undefined on the play level") }}  
+
