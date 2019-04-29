@@ -1,7 +1,29 @@
 ---
-- hosts: all
-  gather_facts: false
+- name: Setup VMs
+  hosts: all
+  #connection: local
+  gather_facts: no
+
+
+
   vars_files:
-    - answerfile.yml
-  roles:
-     - deploy-vsphere-template
+    - "vars/vm-size/{{size}}.yaml"
+    - "vars/environment/chc.yaml"
+ 
+
+  tasks:
+
+    - name: return motd to registered var
+      command: git rev-parse HEAD
+      register: gitCommitHash
+      delegate_to: localhost
+
+    - name: power on VMs
+      include_role:
+        name: deploy-vsphere-template
+      vars:
+        state: "poweredon"
+
+    - name: Debug print from the play
+      debug:  
+        msg: guest_custom_ip={{ inventory_hostname | default("Undefined on the play level") }}  

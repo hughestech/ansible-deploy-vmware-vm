@@ -1,0 +1,11 @@
+- Created by user:  {{ lookup('env','USER') }}
+{% if symbol is defined %}
+- Cryptopia.symbol: {{ symbol | upper }}
+{% else %}
+{% endif %}
+- Task id: xxxx
+- Created on: {{ lookup('pipe', 'date') }}
+{% if gitCommitHash is defined %}
+- Git commit: {{ gitCommitHash.stdout }}
+{% else %}
+{% endif %}

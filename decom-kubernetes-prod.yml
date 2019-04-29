@@ -1,0 +1,29 @@
+---
+- name: Setup VMs
+  hosts: all
+  #connection: local
+  gather_facts: no
+
+
+  vars:
+    - state: "poweredoff"
+  vars_files:
+    - "vars/vm-size/{{size}}.yaml"
+    - "vars/environment/chc.yaml"
+ 
+
+
+
+  tasks:
+
+    - name: power off VMs
+      include_role:
+        name: deploy-vsphere-template
+      vars:
+        state: "poweredoff"
+
+    - name: delete VMs
+      include_role:
+        name: deploy-vsphere-template
+      vars:
+        state: "absent"

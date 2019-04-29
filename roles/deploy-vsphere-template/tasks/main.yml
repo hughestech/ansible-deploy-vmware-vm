@@ -2,6 +2,7 @@
 # Deploy a VM from a template using Ansible 'vmware_guest' module
 - name: Deploy VM from template
   vmware_guest:
+    annotation: "{{ lookup('template', './templates/annotations.j2') }}"
     hostname: '{{ deploy_vsphere_host }}'
     username: '{{ deploy_vsphere_user }}'
     password: '{{ deploy_vsphere_password }}'
@@ -10,16 +11,14 @@
     cluster: '{{ deploy_vsphere_cluster }}'
     folder: '{{ deploy_vsphere_folder }}'
     name: '{{ inventory_hostname }}'
-    state: poweredon
     guest_id: '{{ guest_id }}'
-    annotation: "{{ guest_notes }}"
     disk:
     - size_gb: 30
       type: thin
       datastore: '{{ deploy_vsphere_datastore }}'
     networks:
     - name: '{{ guest_network }}'
-      ip: '{{ guest_custom_ip }}'
+      ip: "{{ guest_custom_ip }}"
       netmask: '{{ guest_netmask }}'
       gateway: '{{ guest_gateway }}'
       dns_servers:
@@ -34,5 +33,5 @@
       hostname: '{{ inventory_hostname }}'
     template: '{{ guest_template }}'
     wait_for_ip_address: no
-    state: poweredon
+    state: "{{state}}"
   delegate_to: localhost

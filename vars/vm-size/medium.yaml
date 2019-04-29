@@ -1,0 +1,5 @@
+---
+guest_id: "rhel7_64Guest"
+guest_memory: "1024"
+guest_vcpu: "3"
+guest_template: "centos7-min-tpl-20190321-automation"
