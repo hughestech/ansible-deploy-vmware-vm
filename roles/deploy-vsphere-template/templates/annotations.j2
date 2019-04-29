@@ -9,3 +9,7 @@
 - Git commit: {{ gitCommitHash.stdout }}
 {% else %}
 {% endif %}
+{% if gitRemote is defined %}
+- Git commit: {{ gitRemote.stdout }}
+{% else %}
+{% endif %}
