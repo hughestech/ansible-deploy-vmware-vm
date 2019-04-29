@@ -18,6 +18,11 @@
       register: gitCommitHash
       delegate_to: localhost
 
+    - name: get remote git repo
+      command: git config --get remote.origin.url
+      register: gitRemote
+      delegate_to: localhost
+
     - name: power on VMs
       include_role:
         name: deploy-vsphere-template

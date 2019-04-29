@@ -1,0 +1,13 @@
+---
+deploy_vsphere_host: "xxx.xxx.xxx.com"
+deploy_vsphere_user: ""
+deploy_vsphere_password: ""
+deploy_vsphere_datacenter: "Christchurch"
+deploy_vsphere_folder: "/Development/xxx.xxxx.xxx/Automation"
+deploy_vsphere_cluster: "Development"
+guest_network: ""
+guest_netmask: "255.255.255.0"
+guest_gateway: "10.4.65.1"
+guest_dns_server: "10.4.65.2"
+guest_domain_name: "dev.xxx.nz"
+deploy_vsphere_datastore: 'xxxxx'
