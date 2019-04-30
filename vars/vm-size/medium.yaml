@@ -1,5 +1,6 @@
 ---
 guest_id: "rhel7_64Guest"
-guest_memory: "1024"
-guest_vcpu: "3"
+guest_memory: "12288" #12G
+guest_vcpu: "4"
 guest_template: "centos7-min-tpl-20190321-automation"
+disk_size: 80
