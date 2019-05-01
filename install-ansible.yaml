@@ -1,0 +1,13 @@
+---
+- name: Setup SSH for new VMs
+  hosts: mgmt01.uka.topia.nz
+  gather_facts: yes
+
+
+  tasks:
+  - name: Install a list of packages
+    yum:
+      name:
+        - ansible
+      state: present
+    become: true
