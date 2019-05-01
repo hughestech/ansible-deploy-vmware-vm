@@ -1,7 +1,7 @@
 ---
 - name: Setup VMs
   hosts: all
-  #connection: local
+  connection: local
   gather_facts: no
 
 
@@ -27,3 +27,4 @@
         name: deploy-vsphere-template
       vars:
         state: "absent"
+      become:

@@ -13,12 +13,12 @@
     name: '{{ inventory_hostname }}'
     guest_id: '{{ guest_id }}'
     disk:
-    - size_gb: 30
+    - size_gb: '{{ disk_size }}'
       type: thin
       datastore: '{{ deploy_vsphere_datastore }}'
     networks:
     - name: '{{ guest_network }}'
-      ip: "{{ guest_custom_ip }}"
+      ip: "{{ ansible_host }}"
       netmask: '{{ guest_netmask }}'
       gateway: '{{ guest_gateway }}'
       dns_servers:
