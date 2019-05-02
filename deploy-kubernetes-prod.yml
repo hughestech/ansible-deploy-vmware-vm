@@ -4,7 +4,10 @@
   #connection: local
   gather_facts: no
 
-
+  ### README
+  ## To run:
+  ## ansible-playbook -i phx.ini deploy-kubernetes-prod.yml --vault-id @prompt -e "env=phx" -K
+  
 
   vars_files:
     - "vars/vm-size/{{size}}.yaml"

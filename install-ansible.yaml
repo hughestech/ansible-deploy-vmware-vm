@@ -18,5 +18,11 @@
         - ansible
         - epel-release
         - python-pip
+        - policycoreutils-python
       state: present
     become: true
+
+  - pip:
+      name: pyvmomi
+
+    
