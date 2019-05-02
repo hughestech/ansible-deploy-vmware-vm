@@ -3,11 +3,20 @@
   hosts: mgmt01.uka.topia.nz
   gather_facts: yes
 
-
+### Readme
+## To run
+## ansible-playbook install-ansible.yaml -i jumphost.ini -K
   tasks:
+
+  - import_role:
+       name: epel-repository
+
+       
   - name: Install a list of packages
     yum:
       name:
         - ansible
+        - epel-release
+        - python-pip
       state: present
     become: true
