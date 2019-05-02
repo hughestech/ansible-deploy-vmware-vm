@@ -16,21 +16,33 @@
     - debug:
         msg: "State before power off value is  {{ state }}"
 
-    - name: power off VMs
-      include_role:
-        name: deploy-vsphere-template
-      vars:
-        state: "poweredoff"
+#    - name: power off VMs
+#      include_role:
+#        name: deploy-vsphere-template
+#      vars:
+#        state: "poweredoff"
+
+    - name: Remove vm
+      vmware_guest:
+        hostname: "{{ deploy_vsphere_host }}"
+        username: "{{ deploy_vsphere_user }}"
+        password: "{{ deploy_vsphere_password }}"
+        validate_certs: no
+        cluster: "{{ deploy_vsphere_cluster }}"
+        name: "{{ inventory_hostname }}"
+        state: absent
+      delegate_to: localhost
+      register: facts
 
     - debug:
         msg: "State after power off value is  {{ state }}"
 
-    - name: delete VMs
-      include_role:
-        name: deploy-vsphere-template
-      vars:
-        state: "absent"
-      become:
+#    - name: delete VMs
+#      include_role:
+#        name: deploy-vsphere-template
+#      vars:
+#        state: "absent"
+#      become:
 
     - debug:
-        msg: "State after delete VMs value is  {{ state }}"
+        msg: "State after delete value is  {{ state }}"
