@@ -9,11 +9,8 @@
     - state: "poweredoff"
   vars_files:
     - "vars/vm-size/{{size}}.yaml"
-    - "vars/environment/chc.yaml"
+    - "vars/environment/{{env}}.yaml"
  
-
-
-
   tasks:
 
     - name: power off VMs
