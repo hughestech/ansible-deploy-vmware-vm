@@ -8,7 +8,7 @@
     password: '{{ deploy_vsphere_password }}'
     validate_certs: no
     datacenter: '{{ deploy_vsphere_datacenter }}'
-    esxi_hostname: '{{ deploy_vsphere_cluster }}'
+    cluster: '{{ deploy_vsphere_cluster }}'
     folder: '{{ deploy_vsphere_folder }}'
     name: '{{ inventory_hostname }}'
     guest_id: '{{ guest_id }}'
