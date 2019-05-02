@@ -13,8 +13,8 @@
  
   tasks:
 
-    - debug:
-        msg: "State before power off value is  {{ state }}"
+    - set_fact:
+        datacenter: "{{ deploy_vsphere_datacenter }}"
 
 #    - name: power off VMs
 #      include_role:
