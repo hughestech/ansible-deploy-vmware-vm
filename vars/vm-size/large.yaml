@@ -2,4 +2,4 @@
 guest_id: "rhel7_64Guest"
 guest_memory: "16384" #16g
 guest_vcpu: "6"
-disk_size: 100
+disk_size: 200
