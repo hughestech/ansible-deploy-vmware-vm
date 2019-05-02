@@ -14,8 +14,7 @@
   tasks:
 
     - debug:
-      var: state
-      verbosity: 2
+        msg: "State before power off value is  {{ state }}"
 
     - name: power off VMs
       include_role:
@@ -23,9 +22,15 @@
       vars:
         state: "poweredoff"
 
+    - debug:
+        msg: "State after power off value is  {{ state }}"
+
     - name: delete VMs
       include_role:
         name: deploy-vsphere-template
       vars:
         state: "absent"
       become:
+
+    - debug:
+        msg: "State after delete VMs value is  {{ state }}"
