@@ -13,6 +13,10 @@
  
   tasks:
 
+    - debug:
+      var: state
+      verbosity: 2
+
     - name: power off VMs
       include_role:
         name: deploy-vsphere-template
