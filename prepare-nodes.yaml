@@ -1,0 +1,11 @@
+---
+- name: Initial setup of node
+  hosts: all
+  gather_facts: yes
+
+
+- name: Set authorized key taken from file
+  authorized_key:
+    user: deploy
+    state: present
+    key: "{{ lookup('file', '/home/deploy/.ssh/id_rsa.pub') }}"
