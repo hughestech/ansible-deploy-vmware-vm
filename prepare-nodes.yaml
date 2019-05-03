@@ -5,7 +5,7 @@
 
   #### README
   ## Run:
-  ## ansible-playbook -i phx.ini prepare-nodes.yaml --ask-pass
+  ## ansible-playbook -i phx.ini prepare-nodes.yaml --ask-pass --ask-become-pass
 
   tasks:
 
