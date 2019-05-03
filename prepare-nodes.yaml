@@ -17,5 +17,5 @@
     become: true
 
   - hostname:
-    name: '{{ inventory_hostname }}.{{domain}}'
+      name: '{{ inventory_hostname }}.{{domain}}'
     become: true
