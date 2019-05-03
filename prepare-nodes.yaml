@@ -3,6 +3,9 @@
   hosts: all
   gather_facts: yes
 
+  #### README
+  ## Run:
+  ## ansible-playbook -i phx.ini prepare-nodes.yaml --ask-pass
 
   tasks:
 
@@ -11,3 +14,4 @@
       user: deploy
       state: present
       key: "{{ lookup('file', '/home/deploy/.ssh/id_rsa.pub') }}"
+    become: true
