@@ -28,9 +28,9 @@
       num_cpus: '{{ guest_vcpu }}'
     customization:
       dns_servers:
-      - '{{ guest_dns_server }}{{domain}}'
+      - '{{ guest_dns_server }}'
       domain : '{{ guest_domain_name }}'
-      hostname: '{{ inventory_hostname }}'
+      hostname: '{{ inventory_hostname }}.{{domain}}'
     template: '{{ guest_template }}'
     wait_for_ip_address: no
     state: "{{ state }}"
