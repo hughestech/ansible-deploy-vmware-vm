@@ -1,0 +1,11 @@
+---
+- name: debug
+  hosts: all
+  gather_facts: false
+  connection: local
+
+  tasks:
+
+  - debug:
+      msg: "Group names are {{ hostvars[inventory_hostname].group_names[0]   }}"
+      
