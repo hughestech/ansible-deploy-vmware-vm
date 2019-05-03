@@ -30,7 +30,7 @@
       dns_servers:
       - '{{ guest_dns_server }}'
       domain : '{{ guest_domain_name }}'
-      hostname: '{{ inventory_hostname }}.{{domain}}'
+      hostname: '{{ inventory_hostname }}'
     template: '{{ guest_template }}'
     wait_for_ip_address: no
     state: "{{ state }}"

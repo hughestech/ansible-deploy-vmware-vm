@@ -15,3 +15,7 @@
       state: present
       key: "{{ lookup('file', '/home/deploy/.ssh/id_rsa.pub') }}"
     become: true
+
+  - hostname:
+    name: '{{ inventory_hostname }}.{{domain}}'
+    become: true
