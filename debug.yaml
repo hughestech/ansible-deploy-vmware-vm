@@ -6,6 +6,17 @@
 
   tasks:
 
+  #- debug:
+  #    msg: "Group names are {{ hostvars[inventory_hostname].group_names[0]   }}"
+
   - debug:
-      msg: "Group names are {{ hostvars[inventory_hostname].group_names[0]   }}"
+      var: "{{ hostvars[item].ansible_host }}"
+    with_inventory_hostnames:
+    - all
+
+  - lineinfile:
+      path: /etc/hosts
+      line: '{{ hostvars[item].ansible_host }} {{ hostvars[item].inventory_hostname}}'
+    with_inventory_hostnames:
+    - all
       
