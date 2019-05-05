@@ -16,7 +16,7 @@
 
   - lineinfile:
       path: /etc/hosts
-      line: '{{ hostvars[item].ansible_host }} {{ hostvars[item].inventory_hostname}}'
+      line: '{{ hostvars[item].ansible_host }} {{ hostvars[item].inventory_hostname}}.{{ domain }}'
     with_inventory_hostnames:
     - all
       
