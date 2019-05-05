@@ -32,6 +32,6 @@
       domain : '{{ guest_domain_name }}'
       hostname: '{{ inventory_hostname }}'
     template: '{{ guest_template }}'
-    wait_for_ip_address: no
+    wait_for_ip_address: yes
     state: "{{ state }}"
   delegate_to: localhost
