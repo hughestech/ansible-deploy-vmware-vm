@@ -19,14 +19,6 @@
       name: "{{ packages }}"
     vars:
       packages:
-      - httpd
-      - httpd-tools
-
-  - name: ensure a list of packages installed
-    yum:
-      name: "{{ packages }}"
-    vars:
-      packages:
       - epel-release
       - python-pip
     become: true
