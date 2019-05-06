@@ -14,10 +14,6 @@
         policy: targeted
         state: enforcing
 
-  - name: configure name servers
-    net_system:
-      name_servers:
-        - 8.8.8.8
 
   - name: ensure a list of packages installed
     yum:
