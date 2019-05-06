@@ -9,6 +9,28 @@
 
   tasks:
 
+
+  - selinux:
+        policy: targeted
+        state: enforcing
+
+  - name: ensure a list of packages installed
+    yum:
+      name: "{{ packages }}"
+    vars:
+      packages:
+      - httpd
+      - httpd-tools
+
+  - name: ensure a list of packages installed
+    yum:
+      name: "{{ packages }}"
+    vars:
+      packages:
+      - epel-release
+      - python-pip
+    become: true
+
   - name: Set authorized key taken from file
     authorized_key:
       user: deploy
