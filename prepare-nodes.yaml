@@ -21,6 +21,13 @@
     vars:
       packages:
       - epel-release
+    become: true
+
+  - name: ensure a list of packages installed
+    yum:
+      name: "{{ packages }}"
+    vars:
+      packages:
       - python-pip
     become: true
 
