@@ -13,7 +13,7 @@ master{{loop.index}} openshift_ip={{hostvars[item].ansible_host}} ansible_ssh_ho
 
 
 [etcd]
-{% for item in groups['workers'] %}
+{% for item in groups['control'] %}
 master{{loop.index}} openshift_ip={{hostvars[item].ansible_host}} ansible_ssh_host={{hostvars[item].ansible_host}}  openshift_node_group_name='node-config-master-infra'
 {% endfor %}
 
