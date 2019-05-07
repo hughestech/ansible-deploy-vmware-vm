@@ -1,6 +1,8 @@
 ---
 - name: Label OpenShift nodes
   hosts: workers
+  connection: local
+  gather_facts: no
 
   tasks:
 
