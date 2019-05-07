@@ -14,15 +14,15 @@ master{{loop.index}} openshift_ip={{hostvars[item].ansible_host}} ansible_ssh_ho
 
 [etcd]
 {% for item in groups['control'] %}
-master{{loop.index}} openshift_ip={{hostvars[item].ansible_host}} ansible_ssh_host={{hostvars[item].ansible_host}}  openshift_node_group_name='node-config-master-infra'
+{{hostvars[item].ansible_hostname}} openshift_ip={{hostvars[item].ansible_host}} ansible_ssh_host={{hostvars[item].ansible_host}}  openshift_node_group_name='node-config-master-infra'
 {% endfor %}
 
 [nodes]
 {% for item in groups['workers'] %}
-worker{{loop.index}} openshift_ip={{hostvars[item].ansible_host}} ansible_ssh_host={{hostvars[item].ansible_host}}  openshift_schedulable=true openshift_node_group_name="node-config-compute"
+{{hostvars[item].ansible_hostname}} openshift_ip={{hostvars[item].ansible_host}} ansible_ssh_host={{hostvars[item].ansible_host}}  openshift_schedulable=true openshift_node_group_name="node-config-compute"
 {% endfor %}
 {% for item in groups['control'] %}
-master{{loop.index}} openshift_ip={{hostvars[item].ansible_host}} ansible_ssh_host={{hostvars[item].ansible_host}}  openshift_node_group_name='node-config-master-infra'
+{{hostvars[item].ansible_hostname}} openshift_ip={{hostvars[item].ansible_host}} ansible_ssh_host={{hostvars[item].ansible_host}}  openshift_node_group_name='node-config-master-infra'
 {% endfor %}
 
 
@@ -62,7 +62,7 @@ openshift_image_tag=v{{ openshift_release }}
 openshift_pkg_version="-3.11.0"
 openshift_install_examples=true
 
-openshift_management_install_management=True
+
 
 #openshift_web_console_nodeselector={'region':'nodes'}
 
@@ -77,7 +77,7 @@ logging_elasticsearch_rollout_override=false
 osm_use_cockpit=true
 
 # Install CloudForms/ManagementIQ
-openshift_management_install_management=true
+openshift_management_install_management=false
 # We have a default storage class that will take care of everything
 openshift_management_storage_class=preconfigured
 
