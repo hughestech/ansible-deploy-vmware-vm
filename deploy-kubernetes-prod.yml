@@ -41,6 +41,6 @@
         state: "poweredon"
 
     - name: create openshift inventory file
-      template: "src=templates/inventory.j2 dest={{env}}-openshift-inventory.ini"
+      template: "src=templates/inventory.j2 dest=../openshift-install/clusters/{{env}}-openshift-inventory.ini"
       delegate_to: localhost
 
