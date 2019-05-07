@@ -6,7 +6,7 @@ nodes
 
 [masters]
 {% for item in groups['control'] %}
-master{{loop.index}} openshift_ip={{hostvars[item].ansible_host}}  openshift_node_group_name='node-config-master-infra'
+master{{loop.index}} openshift_ip={{hostvars[item].ansible_host}} ansible_ssh_host={{hostvars[item].ansible_host}} openshift_node_group_name='node-config-master-infra'
 {% endfor %}
 #openshift_node_groups=[{'name': 'node-config-master', 'labels': ['node-role.kubernetes.io/master=true']}, {'name': 'node-config-infra', 'labels': ['node-role.kubernetes.io/infra=true']}, {'name': 'node-config-compute', 'labels': ['node-role.kubernetes.io/compute=false']}]
 
@@ -14,15 +14,15 @@ master{{loop.index}} openshift_ip={{hostvars[item].ansible_host}}  openshift_nod
 
 [etcd]
 {% for item in groups['workers'] %}
-master{{loop.index}} openshift_ip={{hostvars[item].ansible_host}}  openshift_node_group_name='node-config-master-infra'
+master{{loop.index}} openshift_ip={{hostvars[item].ansible_host}} ansible_ssh_host={{hostvars[item].ansible_host}}  openshift_node_group_name='node-config-master-infra'
 {% endfor %}
 
 [nodes]
 {% for item in groups['workers'] %}
-worker{{loop.index}} openshift_ip={{hostvars[item].ansible_host}}  openshift_schedulable=true openshift_node_group_name="node-config-compute"
+worker{{loop.index}} openshift_ip={{hostvars[item].ansible_host}} ansible_ssh_host={{hostvars[item].ansible_host}}  openshift_schedulable=true openshift_node_group_name="node-config-compute"
 {% endfor %}
 {% for item in groups['control'] %}
-master{{loop.index}} openshift_ip={{hostvars[item].ansible_host}}  openshift_node_group_name='node-config-master-infra'
+master{{loop.index}} openshift_ip={{hostvars[item].ansible_host}} ansible_ssh_host={{hostvars[item].ansible_host}}  openshift_node_group_name='node-config-master-infra'
 {% endfor %}
 
 
