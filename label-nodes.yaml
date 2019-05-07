@@ -3,8 +3,20 @@
   hosts: workers
   connection: local
   gather_facts: no
+  
+  vars_prompt:
+    - name: "username"
+      prompt: "what is your username?"
+    - name: "password"
+      prompt: "what is your OpenShift password?"
+      private: yes
+      
 
   tasks:
+  
+  - name: login to openshift
+    command: "oc login https://uka.topia.nz:8443  --insecure-skip-tls-verify=true -p={{password}} -u={{username}}"
+    delegate_to: localhost
 
   - name: label node
     command: "oc label node {{inventory_hostname}}.uka.topia.nz cryptopia.symbol/{{symbol}}=true"
