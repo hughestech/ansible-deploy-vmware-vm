@@ -8,6 +8,14 @@
   ## To run:
   ## ansible-playbook -i phx.ini deploy-kubernetes-prod.yml --vault-id @prompt -e "env=phx" -K
   
+  vars:
+      - ssh_username: "deploy"
+      - openshift_release: "3.11"
+      - dns:
+          metrics: metrics.uka.topia.nz
+          public_hostname: uka.topia.nz
+          apps: apps.uka.topia.nz
+          master_default_subdomain: internal.uka.topia.nz
 
   vars_files:
     - "vars/vm-size/{{size}}.yaml"
@@ -32,4 +40,7 @@
       vars:
         state: "poweredon"
 
+    - name: create openshift inventory file
+      template: "src=templates/inventory.j2 dest={{env}}-openshift-inventory.ini"
+      delegate_to: localhost
 
