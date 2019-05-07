@@ -1,5 +1,5 @@
 ---
 guest_id: "rhel7_64Guest"
-guest_memory: "12288" #12G
+guest_memory: "8192" #12G
 guest_vcpu: "4"
 disk_size: 150
