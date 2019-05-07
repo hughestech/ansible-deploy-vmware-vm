@@ -7,5 +7,5 @@
   tasks:
 
   - name: label node
-    command: "oc label node {{inventory_hostname}}.uka.topia.nz cryptopia.symbol/{{symbol}}=true --config=~/.kube/config"
+    command: "oc label node {{inventory_hostname}}.uka.topia.nz cryptopia.symbol/{{symbol}}=true"
     delegate_to: 127.0.0.1
