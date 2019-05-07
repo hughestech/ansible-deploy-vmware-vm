@@ -1,0 +1,8 @@
+---
+- name: Label OpenShift nodes
+  hosts: workers
+
+  tasks:
+
+  - name: label node
+    command: oc label node {{inventory_hostname}}.topia.nz cryptopia.symbol/{{symbol}}=true
