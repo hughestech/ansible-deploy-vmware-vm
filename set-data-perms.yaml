@@ -9,5 +9,6 @@
     - file:
         path: /data
         mode: 01777
-      become:true
-      recurse: true
+        recurse: true
+      become: true
+      
