@@ -20,7 +20,7 @@
     delegate_to: localhost
 
   - name: label node
-    command: "oc delete pod {{symbol}}-walletbuilder-1-build -n {{symbol}}"
+    command: "oc delete pod {{symbol}}-walletrunner-1-build -n {{symbol}}"
     delegate_to: localhost
     
   - name: start wallet-builder build
