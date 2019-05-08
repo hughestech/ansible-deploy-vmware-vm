@@ -1,0 +1,13 @@
+---
+- name: set pv dir perms
+  hosts: workers
+
+
+
+  tasks:
+
+    - file:
+        path: /data
+        mode: 01777
+      become:true
+      recurse: true
