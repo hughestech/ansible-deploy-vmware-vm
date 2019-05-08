@@ -22,3 +22,4 @@
     
   - name: start wallet-builder build
     command: "oc start-build {{symbol}}-walletbuilder -n {{symbol}} --config=/home/deploy/.kube/confg"
+    delegate_to: localhost
