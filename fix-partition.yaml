@@ -1,0 +1,22 @@
+---
+- name: Fix Partition
+  hosts: workers
+  #connection: local
+  gather_facts: no
+
+
+  vars:
+      - ssh_username: "deploy"
+      - openshift_release: "3.11"
+      - dns:
+          metrics: metrics.uka.topia.nz
+          public_hostname: uka.topia.nz
+          apps: apps.uka.topia.nz
+          master_default_subdomain: internal.uka.topia.nz
+
+  vars_files:
+    - "vars/vm-size/{{size}}.yaml"
+    - "vars/environment/{{env}}.yaml"
+
+
+  tasks:
