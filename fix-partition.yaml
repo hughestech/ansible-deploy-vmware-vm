@@ -28,13 +28,13 @@
       debug:  
         msg: "Partiion info is {{ sda_info }}"
 
-  #  - parted:
-  #      device: /dev/sda
-  #      number: 3
-  #      flags: [ lvm ]
-  #      state: present
-  #      part_start: 17GiB
-  #      part_end: 100%
-  #    become: true
+    - parted:
+        device: /dev/sda
+        number: 3
+        flags: [ lvm ]
+        state: present
+        part_start: 16385.0KiB
+        part_end: 100%
+      become: true
 
     
