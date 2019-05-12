@@ -20,3 +20,10 @@
 
 
   tasks:
+
+    - parted:
+        device: /dev/sda
+        number: 3
+        flags: [ lvm ]
+        state: present
+      become: true
