@@ -33,7 +33,7 @@
         number: 3
         flags: [ lvm ]
         state: present
-        part_start: 16777216kiB
+        part_start: 16777216KiB
         part_end: 100%
       become: true
 
