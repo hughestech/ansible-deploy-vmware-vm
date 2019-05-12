@@ -43,4 +43,12 @@
         pvs: /dev/sda2,/dev/sda3
       become: true
 
+    - name: Extend the logical volume to take all remaining space of the PVs and resize the underlying filesystem
+      lvol:
+        vg: centos
+        lv: root
+        size: 100%PVS
+        resizefs: true
+      become: true
+
     
