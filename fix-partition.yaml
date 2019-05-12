@@ -37,4 +37,10 @@
         part_end: 100%
       become: true
 
+    - name: Create or resize a volume group on top of /dev/sda2 and /dev/sda3.
+      lvg:
+        vg: centos
+        pvs: /dev/sda2,/dev/sda3
+      become: true
+
     
