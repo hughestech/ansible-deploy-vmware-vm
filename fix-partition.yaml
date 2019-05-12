@@ -21,9 +21,20 @@
 
   tasks:
 
-    - parted:
-        device: /dev/sda
-        number: 3
-        flags: [ lvm ]
-        state: present
-      become: true
+    - parted: device=/dev/sda unit=MiB
+      register: sda_info
+
+    - name: "partition info"
+      debug:  
+        msg: "Partiion info is {{ sda_info }}"
+
+  #  - parted:
+  #      device: /dev/sda
+  #      number: 3
+  #      flags: [ lvm ]
+  #      state: present
+  #      part_start: 17GiB
+  #      part_end: 100%
+  #    become: true
+
+    
