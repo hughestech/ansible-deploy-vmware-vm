@@ -1,0 +1,54 @@
+---
+- name: Fix Partition
+  hosts: workers
+  #connection: local
+  gather_facts: no
+
+
+  vars:
+      - ssh_username: "deploy"
+      - openshift_release: "3.11"
+      - dns:
+          metrics: metrics.uka.topia.nz
+          public_hostname: uka.topia.nz
+          apps: apps.uka.topia.nz
+          master_default_subdomain: internal.uka.topia.nz
+
+  vars_files:
+    - "vars/vm-size/{{size}}.yaml"
+    - "vars/environment/{{env}}.yaml"
+
+
+  tasks:
+
+    - parted: device=/dev/sda unit=MiB
+      register: sda_info
+
+    - name: "partition info"
+      debug:  
+        msg: "Partiion info is {{ sda_info }}"
+
+    - parted:
+        device: /dev/sda
+        number: 3
+        flags: [ lvm ]
+        state: present
+        part_start: 16777216KiB
+        part_end: 100%
+      become: true
+
+    - name: Create or resize a volume group on top of /dev/sda2 and /dev/sda3.
+      lvg:
+        vg: centos
+        pvs: /dev/sda2,/dev/sda3
+      become: true
+
+    - name: Extend the logical volume to take all remaining space of the PVs and resize the underlying filesystem
+      lvol:
+        vg: centos
+        lv: root
+        size: 100%PVS
+        resizefs: true
+      become: true
+
+    

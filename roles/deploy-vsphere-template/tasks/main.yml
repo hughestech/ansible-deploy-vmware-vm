@@ -8,17 +8,17 @@
     password: '{{ deploy_vsphere_password }}'
     validate_certs: no
     datacenter: '{{ deploy_vsphere_datacenter }}'
-    cluster: '{{ deploy_vsphere_cluster }}'
+    esxi_hostname: '{{ deploy_vsphere_cluster }}'
     folder: '{{ deploy_vsphere_folder }}'
     name: '{{ inventory_hostname }}'
     guest_id: '{{ guest_id }}'
     disk:
-    - size_gb: 30
+    - size_gb: '{{ disk_size }}'
       type: thin
       datastore: '{{ deploy_vsphere_datastore }}'
     networks:
     - name: '{{ guest_network }}'
-      ip: "{{ guest_custom_ip }}"
+      ip: "{{ ansible_host }}"
       netmask: '{{ guest_netmask }}'
       gateway: '{{ guest_gateway }}'
       dns_servers:
@@ -32,6 +32,6 @@
       domain : '{{ guest_domain_name }}'
       hostname: '{{ inventory_hostname }}'
     template: '{{ guest_template }}'
-    wait_for_ip_address: no
-    state: "{{state}}"
+    wait_for_ip_address: yes
+    state: "{{ state }}"
   delegate_to: localhost

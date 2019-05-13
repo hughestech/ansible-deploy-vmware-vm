@@ -1,0 +1,54 @@
+
+---
+- name: Initial setup of node
+  hosts: workers
+  gather_facts: yes
+
+  tasks:
+
+  # TODO - determine which node 
+  # TODO - check no other wallets are deployed on the node
+
+  - name: Install policycoreutils-python
+    yum:
+      name: policycoreutils-python
+    become: true
+
+
+
+  - name: Get "{{inventory_hostname}}" facts
+    setup:
+    remote_user: "{{ansible_user}}"
+
+  #- shell: echo {{ symbol }}
+  #  hosts: workers
+  #  when: "'CRYPTOPIA_WALLET' in ansible_env"
+  #  remote_user: "{{ansible_user}}"
+
+  - name: populate /etc/environment
+    lineinfile:
+      dest: "/etc/environment"
+      state: present
+      line: "CRYPTOPIA_SYMBOL={{ symbol }}"
+    #remote_user: "{{ansible_user}}"
+    when: "'CRYPTOPIA_SYMBOL' not in ansible_env"
+    become: true
+
+  - name: Creates directory
+    file:
+      path: "/data/{{ symbol | lower }}"
+      state: directory
+    #remote_user: "{{ansible_user}}"
+
+  - name: "Allow container to modify files in /data/{{ symbol | lower }}"
+    sefcontext:
+      target: "/data/{{ symbol | lower }}(/.*)?"
+      setype: container_file_t
+      state: present
+    #remote_user: "{{ansible_user}}"    
+    become: true
+
+  - name: Apply new SELinux file context to filesystem
+    command: "restorecon -irv /data/{{ symbol | lower }}"
+    #remote_user: "{{ansible_user}}"
+    become: true

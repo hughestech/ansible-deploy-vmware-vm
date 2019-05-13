@@ -1,0 +1,13 @@
+---
+- name: Setup SSH for new VMs
+  hosts: all
+  gather_facts: yes
+
+
+  tasks:
+  - authorized_key:
+      user: "{{ lookup('env','USER') }}"
+      state: present
+      manage_dir: yes
+      key: "{{ lookup('file', '/path/to/your/www_id_rsa.pub') }}"
+# vim:ft=ansible:
